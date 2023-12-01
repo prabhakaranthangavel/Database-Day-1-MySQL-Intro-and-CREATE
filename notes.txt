@@ -1,0 +1,531 @@
+Contents
+
+1.Introduction to database
+2.what is mysql?
+3.intro to mysql engines
+4.SQL categories
+5.Explain and Working in SQL categories
+6.Difference between char() & varchar()
+7.Summary of Keywords
+
+*************************************************************************************************************************
+
+7.Summary of Keywords:
+
+DDL : Data Definition Language
+    (table ஐ create செய்வது அல்லது table க்கு rename செய்வது போன்ற செயல்களுக்கு பயன்படுத்தும் language)
+    
+    properties :
+        *CREATE
+        *ALTER
+        *DROP
+        *TRUNCATE
+        *RENAME
+
+                ************************************************************
+
+CREATE
+
+1.Create a database 
+  database ஐ create செய்வதற்கு
+
+  create database <database_name>;
+                     
+
+
+2.To see which database we are in
+  நாம் எந்த database ல் உள்ளோம் என்பதை காண
+
+  show databases;
+
+
+
+3.Select a database
+  குறிப்பிட்ட database ஐ select செய்வதற்கு
+
+  use <database_name>;
+
+
+
+4.View the current database
+  நாம் எந்த databaseல் உள்ளோம் என்பதை காட்டும்
+
+  select database();
+
+
+
+5.View the list of tables in the current database
+  ஒரு databaseல் உள்ள tableகளை காட்ட பயன்படுகிறது
+
+  show tables;
+
+
+
+6.Create a table
+  table ஐ create செய்வதற்கு
+
+  create table <table_name>   ( <column_name> <data_type> <constrain>  , <column_name> <data_type> <constrain> , ...);
+
+
+
+7.View the structure of the table
+  tableன் structure ஐ காண
+
+  desc or derscribe table_name;
+
+                ************************************************************
+
+ALTER
+
+1.If you want to add a new column, use the "add" key
+  புதிதாக ஒரு column ஐ சேர்க்க வேண்டும் என்றால் add என்ற key ஐ பயன்படுத்த வேண்டும்
+                        
+  alter table <table_name> add <column_name> <data_type> <constrain>;
+
+
+
+2.To change only one particular information in the already created table, use the "modify" key
+  ஏற்கனவே create செய்த table ல் குறிப்பிட்ட ஒரு தகவலை மட்டும் மாற்றுவதற்கு modify என்ற key ஐ பயன்படுத்த வேண்டும்
+                        
+  alter table <table_name> modify <column_name> <data_type> <constrain>;
+
+                ************************************************************
+
+DROP
+
+1.To delete a database or table
+  ஒரு database or table ஐ delete செய்ய drop பயன்படுகிறது.
+                        
+  drop table <table_name>;
+
+  drop database <database_name>;
+
+                ************************************************************
+
+TRUNCATE
+
+1.To delete all the records in the table 
+  ஒரு table க்குள் இருக்கும் record ஐ மட்டும் delete செய்வதற்கு truncate பயன்படுகிறது.
+  ஆனால் அந்த table உடைய structure ஐ காட்டும்.
+
+  truncate table <table_name>;
+
+                ************************************************************
+
+RENAME
+
+1.To rename a table
+  ஒரு table க்கு rename கொடுப்பதற்கு பயன்படுகிறது.
+
+  rename table <old_table_name> to <new_table_name>;
+
+*************************************************************************************************************************
+
+DML : Data Manipulation Language 
+    (create செய்த table க்குள் records ஐ சேர்ப்பது திருத்துவது மற்றும் update செய்வது போன்ற செயல்களுக்கு பயன்படுத்தும் language)
+
+
+    properties :
+        *INSERT
+        *UPDATE
+        *DELETE
+
+                ************************************************************
+
+INSERT
+
+  To insert a new record
+  புதிதாக ஒரு record ஐ சேர்க்க
+
+  insert into table_name values(value1,value2,......)
+
+                ************************************************************
+
+UPDATE
+
+  To update an existing record
+
+                ************************************************************
+
+DELETE
+
+  To delete an existing record
+
+*************************************************************************************************************************
+
+Context:
+
+===>So far we have used or seen applications that use variables and references to store the data.
+    ஒரு application ல் அல்லது ஒரு programல் நாம் variables அல்லது references ஐ அதாவது ஒரு data ஐ நாம் சேமித்து வைக்கலாம்.
+    (React வரைக்கும்)
+    
+===>These data will not persist after the application is closed or restarted.
+    ஆனால் அது restart or referesh or close ஆகும் போது அந்த data ஆனது இருக்காது அல்லது வேலை செய்யாது.
+
+===>These data does not persist as it is stored in the RAM memory.
+    Random Access Memory or Volatile Memory
+    இதற்கு காரணம் RAM memory க்குள் store ஆகும்.
+    ஏனென்றால் RAM memory ன் உடைய வேலை ஆகும்.
+    இதனை Random Access Memory அல்லது Volatile Memory என்றும் கூறலாம்.
+
+===>To persist the data,we need to store it in a non-volatile memory (Hard disk , SSD etc)
+    அந்த data ஐ நாம் எப்பொழுதும் பயன்படுத்த வேண்டும் அல்லது அதை store செய்ய வேண்டும் என்றால் அதனை non-volatile memory ல் சேமிக்க வேண்டும். 
+    non-volatile memory க்கான எடுத்துக்காட்டு Hard disk , SSD ஆகும்.
+
+===>in that case,either we can store the data in a file or in a database.
+    அதில் data ஐ நாம் ஒரு file ஆகவோ அல்லது database ஆகவோ store செய்து வைக்கலாம் அல்லது சேமித்து வைக்கலாம் அல்லது பயன்படுத்தலாம்.
+    எனவே நாம் database ஐ பயன்படுத்துகிறோம்.
+
+                ************************************************************
+
+1.Introduction to database
+
+===>A database is a collection of information that is organized so that it can be easily accessed managed and updated.
+    database என்பது collection of information ஆகும்.அதனை தேவைப்படும்போது பயன்படுத்திக்கொள்ளலாம் அல்லது access செய்யலாம்.
+
+===>There are two types of databases 
+        1.SQL       2.NoSQL
+
+===>SQL stands for Structured Query Language.
+    SQL databases are called Relational Databases or Structured Databases
+
+===>NoSQL stands for Not Only Structured Query Language.
+    NoSQL databases are called Non-Relational Databases or Unstructured Databases.
+
+*************************************************************************************************************************
+
+2.what is mysql?
+
+SQL 
+
+===>SQL stands for Structured Query Language.
+    SQL databases are called Relational Databases or Structured Databases
+
+===>SQL databases : 
+    They are collection of tables.The tables are in the form of rows and columns.
+    group of tables ஐ SQL என்று அழைக்கிறோம்.
+    ஒரு table க்குள் எண்ணற்ற rows and columns உள்ளடங்கி இருக்கும்.
+
+===>Structured Query Language is used to manage the data in the database.
+    SQL databases க்குள் இருக்கும் data ஐ எப்படி manage செய்வது அல்லது எப்படி access செய்வது அதற்கு பயன்படுவதுதான் Structured Query Language ஆகும்.
+
+===>MySQL ஐ எப்படி install செய்வது
+
+    Search=>mysql server => Download MySQL Community Server => Select Operating System =>
+    Microsoft Windows => Windows (x86, 64-bit), MSI Installer => Download => All Next =>
+    set the Password  => Install => Finish
+
+===>install செய்ததை கண்டுபிடிப்பது or LOGIN செய்ய
+
+    Command Prompt => type the ( mysql -u root -p ) => Enter Password
+
+    mysql> என்று வந்தால் நாம் install செய்ததை உறுதிப்படுத்தலாம்.
+
+    இல்லை எனில் path ஐ set செய்ய வேண்டும்.
+
+===>ஒரு சில command lines
+
+    select version();  =>  sql ன் version ஐ காட்டும்
+
+    select now();      => தற்போதைய தேதி மற்றும் நேரம் ஐ காட்டும்
+
+    show databases;    => என்னென்ன database உள்ளது அதனை காட்டும்
+
+*************************************************************************************************************************
+
+3.MySQL Engines
+
+mysql   : It is the default storage engine.It is a transaction-safe engine with row-level locking.
+
+InnoDB  : It is a transaction-safe engine with support for foreign keys and row-level locking.
+
+MariaDB : It is a fork of MySQL with added features,performance improvements and bug fixes.
+
+*************************************************************************************************************************
+
+4.SQL categories
+
+    1.DDL : Data Definition Language
+    (table ஐ create செய்வது அல்லது table க்கு rename செய்வது போன்ற செயல்களுக்கு பயன்படுத்தும் language)
+    
+    properties :
+        *CREATE
+        *ALTER
+        *DROP
+        *TRUNCATE
+        *RENAME
+
+*************************************************************************************************************************
+
+5.Explain and Working in SQL categories
+
+    ***CREATE   : To create a database or table
+
+                => Create a database (database ஐ create செய்வதற்கு)
+                        query  : create database <database_name>;
+                        Example: create database kumaran;     //Query OK, 1 row affected (0.03 sec)
+
+                        query  :  show databases;             //Add the kumaran database
+
+
+                => Select a database (குறிப்பிட்ட database ஐ select செய்வதற்கு)
+                        query  : use <database_name>;
+                        Example: use kumaran;                //Database changed => kumaran என்ற database ஆனது select or switch ஆகிறது என்று பொருள்.
+
+
+                => View the current database (நாம் எந்த databaseல் உள்ளோம் என்பதை காட்டும்)
+                        query : select database();           //kumaran
+
+
+                => View the list of tables in the current database (ஒரு databaseல் உள்ள tableகளை காட்ட பயன்படுகிறது)
+                        query  : show tables;
+                        Example: use sys;                    //sys என்ற database ல் 101 tableகள் உள்ளன
+
+
+                => Create a table (table ஐ create செய்வதற்கு)
+                        query  : create table <table_name>   ( <column_name> <data_type> <constrain>  , <column_name> <data_type> <constrain> , ...);
+                        Example: create table family_members (     name        string      primary key,      age         varchar(20)          ,  email char(25) not null);
+
+                        // இப்பொழுது kumaran என்ற database க்குள் family_members என்ற table கள் உருவாகி இருக்கும்.
+                        அதனை காண பின்வரும் வழிகள்
+
+
+                => View the structure of the table
+                        query  : desc or derscribe table_name;
+                        Example: desc or derscribe family_members; 
+
+                        // 3 rowல் ஒரு table உருவாகி இருப்பதை காணலாம்.
+
+                ************************************************************
+
+Excercise :
+
+Create a database called "mydp" and create a table called "students" with the following columns:
+
+id: int,primary key,auto_increment 
+name: varchar(255),not null
+age: int,not null
+email:varchar(255),not null,unique
+phone:varchar(255),not null,unique
+address:varchar(255),not null
+
+Step 1 : Create a database
+         create database mydb;
+
+Step 2 : Show a database
+         show databases;
+
+Step 3 : Select a database
+         use mydb;
+
+Step 4 : View the current database
+         select database();
+
+Step 5 : Create a table
+         create table students
+
+Step 5.1 : Insert column_name & data_type & constrain
+         (id int primary key auto_increment, name varchar(255) not null, age int not null, email varchar(255) not null unique, phone varchar(255) not null unique, address varchar(255) not null);
+
+        create table students(id int primary key auto_increment, name varchar(255) not null, age int not null, email varchar(255) not null unique, phone varchar(255) not null unique, address varchar(255) not null);
+
+Step 6 : View the structure of the table
+         desc students;
+
+output : done          // 6 rows in set
+
+                ************************************************************
+
+    ***ALTER    : To alter the structure of the table
+
+                => If you want to add a new column, use the "add" key
+                   புதிதாக ஒரு column ஐ சேர்க்க வேண்டும் என்றால் add என்ற key ஐ பயன்படுத்த வேண்டும்
+                        
+                        query  : alter table <table_name> add <column_name> <data_type> <constrain>;
+                        Example: alter table students     add rank varchar(255) not null;
+
+                        o/p: student என்ற table ல் 
+                        rank varchar(255) not null என்ற data ஆனது add ஆகி வரும்.
+
+
+                => To change only one particular information in the already created table, use the "modify" key
+                   ஏற்கனவே create செய்த table ல் குறிப்பிட்ட ஒரு தகவலை மட்டும் மாற்றுவதற்கு modify என்ற key ஐ பயன்படுத்த வேண்டும்
+                        
+                        query  : alter table <table_name> modify <column_name> <data_type> <constrain>;
+                        Example: alter table students modify phone char(10) not null unique;
+
+                        o/p : student என்ற table ல் 
+                        phone என்ற content ல் இருந்த datatype ஆனது varchar என்பது char என்று மாறிவிடும்.
+                        அதேபோல் அதனுடைய value ஆனது 255 ல் இருந்து 10 என்று மாறிவிடும்.
+                        இவ்வாறு ஒரு table உடைய குறிப்பிட்ட தகவலை மட்டும் மாற்றி அமைக்கலாம்.
+
+                ************************************************************
+
+    ***DROP     : To delete a database or table
+                  ஒரு database or table ஐ delete செய்ய drop பயன்படுகிறது.
+                        
+                        query  : drop table <table_name>;
+                        Example: drop table students;
+
+                        output : mydb என்ற databaseக்குள் இருக்கும் students என்ற table ஆனது மொத்தமாக delete ஆகிவிடும்.
+                                 இதனை show tables; என்று கொடுத்து confirm செய்யலாம்.
+
+
+                        query  : drop database <database_name>;
+                        Example: drop database mydb;
+
+                        output : mydb என்ற database ஆனது delete ஆகிவிடும்.
+                                 இதனை show databases; என்று கொடுத்து confirm செய்யலாம்.
+
+                ************************************************************
+
+    ***TRUNCATE : To delete all the records in the table 
+                  ஒரு table க்குள் இருக்கும் record ஐ மட்டும் delete செய்வதற்கு truncate பயன்படுகிறது.
+                  ஆனால் அந்த table உடைய structure ஐ காட்டும்.
+
+                        query  : truncate table <table_name>;
+                        Example: truncate table 
+
+                ************************************************************
+
+    ***RENAME   : To rename a table
+                  ஒரு table க்கு rename கொடுப்பதற்கு பயன்படுகிறது.
+
+                        query  : rename table <old_table_name> to <new_table_name>;
+                        Example: rename table students to mybio;
+
+                        output : students என்ற பெயரானது mybio என்று மாறிவிடும்.
+                        இதனை show tables; என்று கொடுத்து நாம் confirm செய்யலாம்.
+
+*************************************************************************************************************************
+
+    2.DML : Data Manipulation Language 
+    (create செய்த table க்குள் records ஐ சேர்ப்பது திருத்துவது மற்றும் update செய்வது போன்ற செயல்களுக்கு பயன்படுத்தும் language)
+
+    ***INSERT : To insert a new record
+                    query   : insert into table_name values(value1,value2,......)
+
+    create a database called "nycflights13"
+    create a table called "flights" with the following columns:
+        year           : int,not null 
+        month          : int,not null
+        day            : int,not null
+        dep_time       : int,not null
+        sched_dep_time : int,not null
+        dep_delay      : int,not null
+        arr_time       : int,not null
+        sched_arr_time : int,not null
+        arr_delay      : int,not null
+        carrier        : varchar(255),not null
+        flight         : int,not null
+        tailnum        : varchar(255),not null
+
+    Insert the following records into the table
+        2013,1,1,517,515,2,830,819,11,"UA",1545,"N14228"
+        2013,1,1,533,529,4,850,830,20,"UA",1714,"N24211"
+        2013,1,1,542,540,2,923,850,33,"AA",1141,"N619AA"
+        2013,1,1,544,545,-1,1004,1022,-18,"B6",725,"N804JB"
+        2013,1,1,554,600,-6,812,837,-25,"DL",461,"N668DN"
+        2013,1,1,554,558,-4,740,728,12,"UA",1696,"N39463"
+
+
+    Step 1 : mysql -u root -p
+
+    Step 2 : create database nycflights13 ;
+
+    Step 3 : show databases;
+
+    Step 4 : use nycflights13;
+
+    Step 5 : select database();
+
+    Step 6 : create table flights (year int not null , month int not null , day int not null ,dep_time int not null ,sched_dep_time int not null ,dep_delay int not null ,arr_time int not null ,sched_arr_time int not null ,arr_delay int not null );
+
+    Step 7 : desc flights;
+
+             output : 9 rows in set
+
+
+
+    Step 8 : alter table flights add column carrier varchar(255) not null,add column flight int not null,add column tailnum varchar(255) not null ; 
+            
+             o/p: table க்குள் புதிதாக 3 records add ஆகி இருக்கும். 
+                  //  12 rows in set
+
+
+    Step 9 : alter table flights add primary key (year,month,day,flight);
+             primary key set செய்கிறோம் ஏனென்றால் அப்பொழுதுதான் நமக்கு தேவையான unique or separate ஆன result ஐ பெற முடியும்.
+
+             desc flights; என்று கொடுத்தால் primary key (year,month,day,flight) க்கு set ஆனதை காணலாம்.
+
+
+    Step 10 : Ways to insert a record
+
+              insert into flights values(2013,1,1,517,515,2,830,819,11), (2013,1,1,533,529,4,850,830,20), (2013,1,1,542,540,2,923,850,33), (2013,1,1,544,545,-1,1004,1022,-18),(2013,1,1,554,600,-6,812,837,-25), (2013,1,1,554,558,-4,740,728,12);
+
+              o/p: Add Records: 6 
+
+
+    ***UPDATE : To update an existing record 
+    ***DELETE : To delete an existing record
+
+*************************************************************************************************************************
+
+    3.DQL : Data Query Language
+    (table க்குள் records ஐ சேர்த்த பின்பு நமக்கு தேவையான குறிப்பிட்ட record ஐ தேர்ந்தெடுத்து பார்க்க பயன்படுத்தும் language)
+
+    ***SELECT : To fetch data from the database
+
+              => View all the records of the table
+                 ஒரு table ல் உள்ள அனைத்து records யும் view செய்வதற்கு
+
+                    query  : select * from table_name;
+                    Example: select * from flights;
+
+                    output : 6 rows in set
+
+
+              => To view only the records in the specified column
+                 குறிப்பிட்ட column ல் உள்ள records மட்டும் view செய்வதற்கு
+
+                    query  : select column_name, column_name, etc , from table_name;
+                    Example: select dep_time, sched_dep_time, dep_delay, arr_time from flights;
+
+                    output : flights என்ற table ல் dep_time, sched_dep_time, dep_delay, arr_time என்ற column ல் உள்ள records மட்டும் view ஆகும்.
+
+*************************************************************************************************************************
+
+    4.TCL : Transaction Control Language
+    (ஒரு data ஐ commit & save & rollback செய்ய பயன்படுத்தும் language)
+
+    ***COMMIT          : To save the changes
+    ***ROLLBACK        : To undo the changes
+    ***SAVEPOINT       : To save temporarily
+    ***SET TRANSACTION : To specify the characteristics of the transaction
+
+*************************************************************************************************************************
+
+6.Difference between char() & varchar()
+
+char()    ===> It is used to store fixed length character strings.The maximum length of the string is 255 characters.
+               நாம் எவ்வளவு உபயோகப்படுத்தினாலும் அதனுடைய மொத்த memory யும் எடுத்துக்கொள்ளும்.
+
+          ===> அதாவது fixed memory or fixed length
+
+
+varchar() ===> It is a used to store variable length character strings.The maximum length of the string is 65535 characters.
+               நாம் எவ்வளவு உபயோகப்படுத்துகிறோமோ அதனுடைய memory ஐ மட்டுமே எடுத்துக்கொள்ளும்.
+          
+          ===> அதாவது Variable length
+
+          ===> most preferred method
+
+          ===> எடுத்துக்காட்டாக உள்நாடு மற்றும் வெளிநாடுகளின் mobile number ஆனது வேறுபட்டு கொண்டிருக்கும்.
+               ஒரு சில இடங்களில் 10 அல்லது 15 க்கும் மேற்பட்டதாக இருக்கும்.
+               இப்பொழுது char(15) என்று கொடுத்துவிட்டால் 15க்கும் உண்டான memory ஐ எடுத்துக் கொள்ளும்.
+               ஆனால் varchar(15) என்று கொடுக்கும்போது
+               நாம் அல்லது user எத்தனை digit எண்களை fil பண்ணுகிறோமோ அதனுடைய memory ஐ மட்டுமே எடுத்துக்கொள்ளும்.
+          
+          ===> எனவே varchar என்பது most preferred method ஆகும்.
+
+*************************************************************************************************************************
